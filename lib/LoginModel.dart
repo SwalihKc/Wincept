@@ -14,6 +14,7 @@ class LoginModel {
           username: username,
           password: password,
         ),
+        
       _ => throw const FormatException('Failed to load album.'),
     };
   }

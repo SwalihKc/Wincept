@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wincept/LoginModel.dart';
+import 'package:wincept/fetchData.dart';
 import 'package:wincept/second_page.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -12,21 +13,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String? name;
-  String? password;
-  @override
-  void initState() {
-    LoginModel(username: name, password: password);
-    super.initState();
-  }
-
+  var userNameController = TextEditingController();
+  var passwordController = TextEditingController();
   Widget build(BuildContext context) {
     LoginModel? obj;
     var screenSize = MediaQuery.of(context).size;
-    var userNameController = TextEditingController();
-    var passwordController = TextEditingController();
-    name = userNameController.text;
-    password = passwordController.text;
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.black,
@@ -49,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextFormField(
+                 style: TextStyle(color: Colors.white),
               controller: userNameController,
               decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -72,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: TextFormField(
+              style: TextStyle(color: Colors.white),
               controller: passwordController,
               decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -92,12 +86,14 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           ElevatedButton(
               onPressed: () {
-               LoginModel(username: userNameController.text, password: passwordController.text);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Second(),
-                    ));
+                createAlbum(userNameController.text, passwordController.text);
+                
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Second(),
+                      ));
+             
               },
               child: Text('Continue')),
           SizedBox(
@@ -106,7 +102,6 @@ class _MyHomePageState extends State<MyHomePage> {
           Image.asset('assets/Meta_Platforms_Inc._logo 1.png')
         ],
       ),
-    
     );
   }
 }
