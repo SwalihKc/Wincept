@@ -21,6 +21,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget build(BuildContext context) {
+    LoginModel? obj;
     var screenSize = MediaQuery.of(context).size;
     var userNameController = TextEditingController();
     var passwordController = TextEditingController();
@@ -91,6 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           ElevatedButton(
               onPressed: () {
+               LoginModel(username: userNameController.text, password: passwordController.text);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
